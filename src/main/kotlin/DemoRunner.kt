@@ -56,7 +56,7 @@ class DemoRunner : Program() {
 
 fun main(args: Array<String>) {
     application(DemoRunner(), configuration {
-        width = 480
-        height = 640
+        width = 1920
+        height = 1080
     })
 }
