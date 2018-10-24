@@ -1,7 +1,10 @@
 import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.Drawer
 import org.openrndr.draw.FontImageMap
+import org.openrndr.draw.isolatedWithTarget
+import org.openrndr.draw.renderTarget
 import org.openrndr.math.Vector2
+import org.openrndr.shape.Rectangle
 import org.openrndr.text.Writer
 
 
@@ -13,11 +16,32 @@ class Text(val drawer: Drawer,
            url: String,
            size: Double
 ) {
-    private val font = FontImageMap.fromUrl(url, size)
+    val font = FontImageMap.fromUrl(url, size)
     val writer = Writer(drawer)
-    private val width = font.let {
+    val height: Double
+        get() {
+            val isUpper = text.fold(true) { acc, char ->
+                acc && (char.isUpperCase() || char.isDigit() || char.isWhitespace())
+            }
+            return if (isUpper) {
+                font.height
+            } else {
+                font.height - font.descenderLength
+            }
+        }
+    val width = font.let {
         drawer.fontMap = font
+//        println("""
+//            asc: ${font.ascenderLength}
+//            height: ${font.height}
+//        """.trimIndent())
         writer.textWidth(text)
+    }
+
+    private val fillRenderTarget by lazy {
+        renderTarget(width.toInt(), height.toInt()) {
+            colorBuffer()
+        }
     }
 
     enum class HorizontalAlign {
@@ -54,6 +78,15 @@ class Text(val drawer: Drawer,
         return Vector2(deltaX, deltaY)
     }
 
+    // draws text stretched to the width and height of a target rectangle
+    fun stretch(target: Rectangle, fn: Drawer.() -> Unit) {
+        drawer.isolatedWithTarget(fillRenderTarget) {
+            drawer.ortho(fillRenderTarget)
+            fn()
+            draw(Vector2(0.0, 0.0), HorizontalAlign.LEFT, VerticalAlign.ASCENDER)
+        }
+        drawer.image(fillRenderTarget.colorBuffer(0), target.corner, target.width, target.height)
+    }
 
     fun draw(
         position: Vector2,
