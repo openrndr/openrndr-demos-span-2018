@@ -22,7 +22,9 @@ class DemoRunner : Program() {
             10 to DemoHashBlur2,
             10 to DemoHashBlur3,
             10 to DemoHashBlur4,
-            10 to DemoGradient3D
+            10 to DemoGradient3D,
+            10 to Mozaic,
+            10 to Flag
         )
 
         class CurrentRunning(
