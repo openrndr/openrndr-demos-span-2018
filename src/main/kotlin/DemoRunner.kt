@@ -12,9 +12,12 @@ class DemoRunner : Program() {
         // list of demo entries:
         // the number of seconds a demo should run paired with the demo itself
         val demos = listOf(
-            1 to Demo001,
-            1 to Demo002,
-            1 to Demo003
+//            1 to Demo001,
+            5 to DemoHashBlur,
+            5 to DemoHashBlur2,
+            5 to DemoHashBlur3,
+            5 to DemoHashBlur4,
+            30 to DemoGradient3D
         )
 
         class CurrentRunning(
@@ -38,9 +41,13 @@ class DemoRunner : Program() {
             )
         }
 
+
         var iterator = demos.iterator()
         var currentRunning: CurrentRunning = initDemo(iterator.next())
 
+        mouse.clicked.listen {
+            currentRunning = initDemo(iterator.next())
+        }
         extend(FunctionDrawer {
             if (!iterator.hasNext()) {
                 iterator = demos.iterator()
