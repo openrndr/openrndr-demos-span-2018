@@ -28,12 +28,12 @@ class Text(val drawer: Drawer,
 
     enum class VerticalAlign {
         ASCENDER,
-        XHEIGHT,
+        //        XHEIGHT,
         BASELINE,
         DESCENDER,
-        CENTER_XHEIGHT,
+        //        CENTER_XHEIGHT,
+        CENTER,
         CENTER_FULL,
-        CENTER_ASCENDER,
         ;
     }
 
@@ -45,11 +45,9 @@ class Text(val drawer: Drawer,
         }
         val deltaY = when (verticalAlign) {
             VerticalAlign.BASELINE -> 0.0
-            VerticalAlign.ASCENDER -> font.ascenderLength
-            VerticalAlign.XHEIGHT -> font.height
+            VerticalAlign.ASCENDER -> font.height
             /// Not sure if we need all these vertical alignment options
-            VerticalAlign.CENTER_XHEIGHT -> font.height / 2.0
-            VerticalAlign.CENTER_ASCENDER -> font.ascenderLength / 2.0
+            VerticalAlign.CENTER -> font.height / 2.0
             VerticalAlign.CENTER_FULL -> ((font.ascenderLength + font.descenderLength) / 2.0)
             VerticalAlign.DESCENDER -> font.descenderLength
         }
@@ -81,11 +79,12 @@ class Text(val drawer: Drawer,
         drawer.fill = ColorRGBa.PINK
         drawer.rectangle(p - Vector2(0.0, font.leading), width, font.leading)
 
+
         // ASC
-        drawer.fill = ColorRGBa.BLUE
+        drawer.fill = ColorRGBa.BLUE.shade(0.5)
         drawer.rectangle(p - Vector2(0.0, font.ascenderLength), width, font.ascenderLength)
 
-        // BODY
+        // HEIGHT
         drawer.fill = ColorRGBa.GRAY
         drawer.rectangle(p - Vector2(0.0, font.height), width, font.height)
 
