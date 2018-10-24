@@ -13,6 +13,9 @@ class DemoRunner : Program() {
         // the number of seconds a demo should run paired with the demo itself
         val demos = listOf(
 //            1 to Demo001,
+            5 to Distance001,
+            5 to Distance002,
+            5 to Distance003,
             5 to DemoHashBlur,
             5 to DemoHashBlur2,
             5 to DemoHashBlur3,
