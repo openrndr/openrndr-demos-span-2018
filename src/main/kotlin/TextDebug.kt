@@ -1,4 +1,5 @@
 import demos.Demo
+import demos.Text
 import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.isolated
 import org.openrndr.math.Vector2
@@ -24,8 +25,8 @@ val TextDebug: Demo = {
 
 //        text.explain(
 //            Vector2(width / 2.0, height / 2.0),
-//            Text.HorizontalAlign.CENTER,
-//            Text.VerticalAlign.CENTER
+//            demos.Text.HorizontalAlign.CENTER,
+//            demos.Text.VerticalAlign.CENTER
 //        )
 
 

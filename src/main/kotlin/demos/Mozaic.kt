@@ -1,6 +1,5 @@
 package demos
 
-import Text
 import org.openrndr.color.ColorRGBa
 import org.openrndr.color.mix
 import org.openrndr.math.Vector2

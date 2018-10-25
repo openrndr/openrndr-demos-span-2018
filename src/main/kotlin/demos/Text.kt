@@ -1,3 +1,5 @@
+package demos
+
 import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.Drawer
 import org.openrndr.draw.FontImageMap

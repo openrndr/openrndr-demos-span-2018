@@ -1,7 +1,6 @@
 package demos
 
 import org.openrndr.color.ColorRGBa
-import Text
 import org.openrndr.color.mix
 import org.openrndr.filter.blend.add
 import org.openrndr.filter.blur.HashBlur

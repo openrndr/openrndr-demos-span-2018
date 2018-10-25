@@ -2,7 +2,6 @@ package demos
 
 import org.openrndr.math.Vector2
 import org.openrndr.shape.Rectangle
-import Text
 import org.openrndr.color.ColorRGBa
 import org.openrndr.color.mix
 import org.openrndr.workshop.toolkit.typography.Fonts
