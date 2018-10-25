@@ -1,9 +1,6 @@
 package demos
 
-import Text
 import org.openrndr.color.ColorRGBa
-import org.openrndr.filter.blur.BoxBlur
-import org.openrndr.filter.blur.GaussianBlur
 import org.openrndr.filter.blur.HashBlur
 import org.openrndr.math.Vector2
 import org.openrndr.workshop.toolkit.filters.VerticalWaves
@@ -12,12 +9,13 @@ import poster
 
 val Flag: Demo = {
     val txt = listOf(
+        "OPEN",
         "RNDR",
         "X",
         "SPAN"
     )
     val texts = txt.map {
-        Text(drawer, it, Fonts.Rubik_Black, 300.0)
+        Text(drawer, it, Fonts.Rubik_Black, 200.0)
     }
     val verticalWaves = VerticalWaves()
     val blur = HashBlur().apply {
@@ -46,7 +44,7 @@ val Flag: Demo = {
                     it.draw(
                         Vector2(
                             width / 2.0,
-                            200.0 + i * (it.height + 100.0)
+                            200.0 + i * (it.height + 20.0)
                         ),
                         Text.HorizontalAlign.CENTER,
                         Text.VerticalAlign.ASCENDER
@@ -62,7 +60,7 @@ val Flag: Demo = {
                     it.draw(
                         Vector2(
                             width / 2.0,
-                            200.0 + i * (it.height + 100.0)
+                            200.0 + i * (it.height + 20.0)
                         ),
                         Text.HorizontalAlign.CENTER,
                         Text.VerticalAlign.ASCENDER
