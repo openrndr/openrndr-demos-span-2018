@@ -24,7 +24,15 @@ class DemoRunner : Program() {
             10 to DemoHashBlur4,
             10 to DemoGradient3D,
             10 to Mozaic,
-            10 to Flag
+            10 to Flag,
+            10 to Vector001,
+            10 to Vector002,
+            10 to Vector003,
+            10 to Vector004,
+            10 to Gradient001,
+            10 to Gradient002,
+            10 to Gradient003,
+            10 to Gradient004
         )
 
         class CurrentRunning(
