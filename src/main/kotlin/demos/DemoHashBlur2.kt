@@ -1,12 +1,10 @@
 package demos
 
 import org.openrndr.color.ColorRGBa
-import Text
 import org.openrndr.color.mix
 import org.openrndr.filter.blend.subtract
 import org.openrndr.filter.blur.HashBlur
 import org.openrndr.math.Vector2
-import org.openrndr.math.map
 import org.openrndr.workshop.toolkit.typography.Fonts
 import poster
 

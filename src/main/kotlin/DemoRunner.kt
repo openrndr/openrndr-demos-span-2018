@@ -22,7 +22,22 @@ class DemoRunner : Program() {
             10 to DemoHashBlur2,
             10 to DemoHashBlur3,
             10 to DemoHashBlur4,
-            10 to DemoGradient3D
+            10 to DemoGradient3D,
+            10 to Mozaic,
+            10 to Flag,
+//            10 to Vector001,
+//            10 to Vector002,
+//            10 to Vector003,
+//            10 to Vector004,
+            10 to Gradient001,
+            10 to Gradient002,
+            10 to Gradient003,
+            10 to Gradient004,
+            10 to Stacker001,
+            10 to Stacker002,
+            10 to Stacker003,
+            10 to Moire001,
+            10 to Moire002
         )
 
         class CurrentRunning(

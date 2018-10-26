@@ -1,12 +1,10 @@
 package demos
 
 import org.openrndr.color.ColorRGBa
-import Text
 import org.openrndr.animatable.Animatable
 import org.openrndr.color.mix
 import org.openrndr.filter.blend.add
 import org.openrndr.filter.blur.GaussianBlur
-import org.openrndr.filter.screenspace.VelocityBlur
 import org.openrndr.math.Vector2
 import org.openrndr.math.map
 import org.openrndr.workshop.toolkit.typography.Fonts
