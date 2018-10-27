@@ -53,6 +53,7 @@ dependencies {
     compile "org.openrndr:openrndr-filter:$openrndrVersion"
     implementation 'com.github.openrndr:workshop-generative-posters:master-SNAPSHOT'
     compile 'com.github.openrndr.orx:orx-jumpflood:-SNAPSHOT'
+    implementation 'com.google.code.gson:gson:2.8.5'
 }
 
 compileKotlin {

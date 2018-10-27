@@ -3,6 +3,8 @@ import org.openrndr.Program
 import org.openrndr.application
 import org.openrndr.configuration
 import org.openrndr.extensions.FunctionDrawer
+import org.openrndr.math.Vector3
+
 
 class DemoRunner : Program() {
 
@@ -13,11 +15,12 @@ class DemoRunner : Program() {
         // the number of seconds a demo should run paired with the demo itself
         val demos = listOf(
 //            1 to Demo001,
-            10 to Distance001,
-            10 to Distance002,
-            10 to Distance003,
-            10 to Distance004,
-            10 to Distance005,
+//            10 to Distance001,
+//            10 to Distance002,
+//            10 to Distance003,
+//            10 to Distance004,
+//            10 to Distance005,
+            10 to Type3d,
             10 to DemoHashBlur,
             10 to DemoHashBlur2,
             10 to DemoHashBlur3,
@@ -25,6 +28,7 @@ class DemoRunner : Program() {
             10 to DemoGradient3D,
             10 to Mozaic,
             10 to Flag,
+
 //            10 to Vector001,
 //            10 to Vector002,
 //            10 to Vector003,
