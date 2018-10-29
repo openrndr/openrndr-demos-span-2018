@@ -27,7 +27,8 @@ lateinit var cameraPositionsList: CameraPositionsList
 
 val Type3d: Demo = {
 
-    lateinit var camera: Debug3D
+    camera.enabled = true
+
     lateinit var projection: VertexBuffer
     lateinit var rt: RenderTarget
 
@@ -42,7 +43,9 @@ val Type3d: Demo = {
         drawer.text("HELSINKI", width/2.0 - 540.0, height/2.0 + 100)
     }
 
-    camera = Debug3D(Vector3(0.0, 0.0, 500.0), Vector3(0.0, 0.0, 0.0))
+    camera.orbitalCamera.rotateTo(
+            Vector3(0.0, 0.0, 500.0)
+    )
 
     projection = vertexBuffer(vertexFormat {
         attribute("transform", VertexElementType.MATRIX44_FLOAT32)
@@ -129,7 +132,6 @@ val Type3d: Demo = {
 
     }
 
-    extend(camera)
 
     var timer = System.currentTimeMillis();
 

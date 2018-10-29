@@ -2,15 +2,16 @@ import demos.*
 import org.openrndr.Program
 import org.openrndr.application
 import org.openrndr.configuration
+import org.openrndr.extensions.Debug3D
 import org.openrndr.extensions.FunctionDrawer
-import org.openrndr.math.Vector3
+import org.openrndr.math.Matrix44
 
 
 class DemoRunner : Program() {
-
+    lateinit var camera: Debug3D
     override fun setup() {
 
-
+        camera = Debug3D()
         // list of demo entries:
         // the number of seconds a demo should run paired with the demo itself
         val demos = listOf(
@@ -54,8 +55,15 @@ class DemoRunner : Program() {
             }
         }
 
+        fun resetCamera() {
+            camera.enabled = false
+            drawer.view = Matrix44.IDENTITY
+            drawer.ortho()
+        }
+
 
         fun initDemo(entry: Pair<Int, Demo>): CurrentRunning {
+            resetCamera()
             val (duration, demo) = entry
             val drawDemo = demo(this)
             return CurrentRunning(
@@ -72,6 +80,7 @@ class DemoRunner : Program() {
         mouse.clicked.listen {
             currentRunning = initDemo(iterator.next())
         }
+        extend(camera)
         extend(FunctionDrawer {
             if (!iterator.hasNext()) {
                 iterator = demos.iterator()
