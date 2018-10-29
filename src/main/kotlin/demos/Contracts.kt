@@ -1,9 +1,13 @@
 package demos
 
 import org.openrndr.Program
-import DemoRunner
+import org.openrndr.extensions.Debug3D
 
 
+abstract class DemoRunner : Program(){
+    // val camera = Debug3D()
+    abstract var camera : Debug3D
+}
 
 // a function which should contain draw commands
 typealias DrawFunction = () -> Unit
