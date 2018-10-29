@@ -121,10 +121,10 @@ val Type3d: Demo = {
                             rotate(Vector3(0.0, 1.0, 0.0), Math.random() * 360.0)
                             rotate(Vector3(1.0, 0.0, 0.0), Math.random() * 360.0)
                             rotate(Vector3(0.0, 0.0, 1.0), Math.random() * 360.0)
-                            scale(1.0, Math.random()*20.0, 1.0)
+                            scale(1.0, Math.random()*3.0, 1.0)
 
                         })
-                write( ColorRGBa.BLACK.opacify(0.5))
+                write( ColorRGBa.WHITE.opacify(0.5))
                 pointCount++
             }
 
@@ -136,7 +136,7 @@ val Type3d: Demo = {
     var timer = System.currentTimeMillis();
 
     {
-        drawer.background(ColorRGBa.PINK)
+        drawer.background(ColorRGBa.BLACK)
 
         drawer.isolated {
             fill = ColorRGBa.BLACK
@@ -156,25 +156,31 @@ val Type3d: Demo = {
             drawer.stroke = null
             drawer.fill = ColorRGBa.WHITE
 
-            if(System.currentTimeMillis()-timer > 500) {
+//            if(System.currentTimeMillis()-timer > 500) {
+//
+//                val selection = cameraPositionsList.cameraPositions.filter { it.handle == (handle%9) }.last()
+//                if(selection!=null) {
+//                    println("Show camera at key " + handle)
+//                    camera.orbitalCamera.rotateTo(
+//                            eye = selection.eye
+//                    )
+//                    camera.orbitalCamera.panTo(
+//                            selection.lookAt
+//                    )
+//                }
+//                handle++
+//
+//                timer = System.currentTimeMillis()
+//            }
 
-                val selection = cameraPositionsList.cameraPositions.filter { it.handle == (handle%9) }.last()
-                if(selection!=null) {
-                    println("Show camera at key " + handle)
-                    camera.orbitalCamera.rotateTo(
-                            eye = selection.eye
-                    )
-                    camera.orbitalCamera.panTo(
-                            selection.lookAt
-                    )
-                }
-                handle++
 
-                timer = System.currentTimeMillis()
+            for(i in 0..10) {
+
+                drawer.circles((0 until 50000).map { Circle(Vector2(-1.0 / 2, -1.0 / 2 + ( i * 20.0)), 2.0) })
+
             }
 
 
-            drawer.circles((0 until 50000).map { Circle(Vector2(-1.0 / 2, -1.0 / 2), 2.0) })
         }
     }
 }
