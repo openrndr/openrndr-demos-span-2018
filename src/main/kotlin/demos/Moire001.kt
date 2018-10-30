@@ -1,13 +1,79 @@
 package demos
 
+import org.openrndr.Program
 import org.openrndr.color.ColorRGBa
 import org.openrndr.filter.blur.HashBlur
 import org.openrndr.math.Vector2
 import org.openrndr.workshop.toolkit.typography.Fonts
 import poster
+import java.io.File
 
 
-data class C(val position: Vector2, val radius: Double)
+data class C(val position: Vector2, val radius: Double) {
+    companion object {
+        fun grid(c: Pair<Double, Int>, width: Int, height: Int): List<C> {
+            val (radius, step) = c
+            return (0..width step step).flatMap { x ->
+                (0..height step step).map { y ->
+                    C(Vector2(x.toDouble(), y.toDouble()), radius)
+                }
+            }
+        }
+    }
+}
+
+fun loadConfigs(): List<List<Pair<Double, Int>>> {
+    return File("data/Moire001.txt").readLines().map { line ->
+        line.split(":").map { l ->
+            l.split("&").let { p ->
+                val radius = p[0].toDouble()
+                val step = p[1].toInt()
+                Pair(radius, step)
+            }
+        }
+    }
+}
+
+fun saveConfig(config: List<Pair<Double, Int>>) {
+    File("data/Moire001.txt").appendText(
+        "\n" + config.map {
+            "${it.first}&${it.second}"
+        }.joinToString(":")
+    )
+    println("saved config")
+}
+
+class State(val program: Program) {
+    private val configs = loadConfigs()
+    private var config = configs[Math.floor(Math.random() * configs.size).toInt()]
+    var layers = config.map { it -> C.grid(it, program.width, program.height) }
+
+    init {
+        program.keyboard.keyDown.filter { it.name == "s" }.listen {
+            saveConfig(config)
+        }
+
+        program.keyboard.keyDown.filter { it.name == "r" }.listen {
+            layers = configs[Math.floor(Math.random() * configs.size).toInt()].map { it -> C.grid(it, program.width, program.height) }
+        }
+
+        program.mouse.clicked.listen {
+            layers = makeLayers()
+        }
+    }
+
+    private fun makeLayers(): List<List<C>> {
+        config = listOf(Pair(10.0, 30)) + List(nLayers) {
+            val radius = 5.0 + Math.random() * 50.0
+            val step = (radius * 2.0 + 1.0 * Math.random() * 50.0).toInt()
+            Pair(radius, step)
+        }
+        return config.map { it -> C.grid(it, program.width, program.height) }
+    }
+}
+
+
+const val nLayers = 3
 
 val Moire001: Demo = {
     val texts = listOf(
@@ -17,33 +83,7 @@ val Moire001: Demo = {
         Text(drawer, it, Fonts.Rubik_Black, 500.0)
     }
 
-    val nLayers = 2
-
-    fun mkCircles(radius: Double, step: Int): List<C> {
-        return (0..width step step).flatMap { x ->
-            (0..height step step).map { y ->
-                C(Vector2(x.toDouble(), y.toDouble()), radius)
-            }
-        }
-    }
-
-    fun getLayers(): List<List<C>> {
-        val bgcircles = mkCircles(10.0, 30)
-        return listOf(
-            bgcircles
-        ) + (0..nLayers).map {
-            val r = 5.0 + Math.random() * 50.0
-            val g = (r * 2.0 + 1.0 * Math.random() * 50.0).toInt()
-            val circles = mkCircles(r, g)
-            circles
-        }
-    }
-
-    var ls = getLayers()
-
-    mouse.clicked.listen {
-        ls = getLayers()
-    }
+    val state = State(this)
 
     val blur = HashBlur()
     val colors = listOf(
@@ -60,11 +100,11 @@ val Moire001: Demo = {
                 blur.apply { time = seconds }
             )) {
                 drawer.fill = ColorRGBa.BLACK
-                ls.forEachIndexed { index, layer ->
+                state.layers.forEachIndexed { index, layer ->
                     val ps = layer.map { it.position }
                     val radius = layer[0].radius * (Math.abs(Math.cos(seconds + index))) + 2.0
                     drawer.fill = colors[index % colors.size]
-                    drawer.circles(ps, radius)
+                    drawer.rectangles(ps, radius, radius)
                 }
             }
 
@@ -86,4 +126,5 @@ val Moire001: Demo = {
         }
     })
 }
+
 
