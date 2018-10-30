@@ -24,15 +24,12 @@ class Runner : DemoRunner() {
             10 to Mesh002,
             10 to Mesh003,
             10 to Mesh004,
-            10 to Gradient001,
-            10 to Gradient002,
             10 to Gradient003,
             30 to Gradient004,
             10 to Type3d,
             10 to DemoHashBlur,
             10 to DemoHashBlur2,
             10 to DemoHashBlur3,
-            10 to DemoHashBlur4,
             10 to DemoGradient3D,
             10 to Mozaic,
             10 to Flag,
@@ -86,19 +83,32 @@ class Runner : DemoRunner() {
         }
 
 
-        var iterator = demos.iterator()
-        var currentRunning: CurrentRunning = initDemo(iterator.next())
-
-        mouse.clicked.listen {
-            currentRunning = initDemo(iterator.next())
+        var index = 0
+        var currentRunning: CurrentRunning = initDemo(demos.first())
+        keyboard.keyUp.listen { it ->
+            val nextIndex = if (it.scanCode == 124) {
+                (index + 1) % demos.size
+            } else if (it.scanCode == 123) {
+                val maybeNext = index - 1
+                if (maybeNext < 0) {
+                    demos.size - 1
+                } else {
+                    maybeNext
+                }
+            } else {
+                null
+            }
+            nextIndex?.let { it ->
+                currentRunning = initDemo(demos[it])
+                index = it
+            }
         }
+
         extend(camera)
         extend(FunctionDrawer {
-            if (!iterator.hasNext()) {
-                iterator = demos.iterator()
-            }
             if (currentRunning.shouldKill()) {
-                currentRunning = initDemo(iterator.next())
+                index = (index + 1) % demos.size
+                currentRunning = initDemo(demos[index])
             }
             drawer.isolated {
                 currentRunning.drawFn()
