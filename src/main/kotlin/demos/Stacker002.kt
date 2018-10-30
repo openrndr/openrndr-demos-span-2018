@@ -13,11 +13,11 @@ import org.openrndr.workshop.toolkit.typography.Fonts
 val Stacker002: Demo = {
     val txt = "OPENRNDR"
 
-    val n = 100
+    val n = 50
     val texts = txt.map { it ->
         Text(drawer, it.toString(), Fonts.SpaceMono_Bold, 700.0)
     }.mapIndexed { index, text ->
-        Stacker(n, 2.0) { i ->
+        Stacker(n, 5.0) { i ->
             drawer.fill = mix(
                 ColorRGBa.WHITE,
                 ColorRGBa.BLACK,

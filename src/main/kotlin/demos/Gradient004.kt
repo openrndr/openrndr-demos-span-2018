@@ -32,7 +32,7 @@ val Gradient004: Demo = {
     }
 
     val c1 = ColorRGBa.BLACK
-    val c2 = ColorRGBa.BLUE
+    val c2 = ColorRGBa.PINK
     gradient.parameter("c1", c1)
     gradient.parameter("c2", c2)
 

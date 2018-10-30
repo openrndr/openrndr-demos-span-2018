@@ -12,7 +12,7 @@ import org.openrndr.workshop.toolkit.typography.Fonts
 
 class Stacker(val repeat: Int, val gap: Double = 5.0, val drawFn: (i: Int) -> Unit) {
     fun draw(drawer: Drawer, seconds: Double) {
-        val n = ((Math.cos(seconds) + 1.0) * 0.5) * repeat + 1.0
+        val n = ((Math.cos(seconds * 1.5) + 1.0) * 0.5) * repeat + 1.0
         drawer.isolated {
             drawer.translate(0.0, repeat / 2.0 * gap)
             List(n.toInt()) { i ->
@@ -28,11 +28,11 @@ class Stacker(val repeat: Int, val gap: Double = 5.0, val drawFn: (i: Int) -> Un
 val Stacker001: Demo = {
     val txt = "OPENRNDR"
 
-    val n = 100
+    val n = 50
     val texts = txt.map { it ->
         Text(drawer, it.toString(), Fonts.SpaceMono_Bold, 700.0)
     }.mapIndexed { index, text ->
-        Stacker(n, 2.0) { i ->
+        Stacker(n, 5.0) { i ->
             drawer.fill = mix(
                 ColorRGBa.WHITE,
                 ColorRGBa.BLACK,

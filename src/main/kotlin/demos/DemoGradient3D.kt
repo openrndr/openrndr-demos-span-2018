@@ -11,10 +11,9 @@ val DemoGradient3D: Demo = {
     val txt = "KAAMOS"
     val text = Text(drawer, txt, Fonts.SpaceMono_Bold, 1000.0)
     val ls = 150
-    val c1 = ColorRGBa.RED
-    val c2 = ColorRGBa.BLUE
+    val c1 = ColorRGBa.BLACK
+    val c2 = ColorRGBa.PINK
     val f = 0.2
-    val center = Vector2(width / 2.0, height / 2.0)
     val stretchTarget = Rectangle(Vector2(0.0, 0.0), width.toDouble() * 1.0, height.toDouble() * 1.0)
     ({
         drawer.background(

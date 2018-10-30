@@ -25,7 +25,7 @@ val DemoHashBlur2: Demo = {
                 gain = 2.0
             }
             layer(post = bblur) {
-                drawer.fill = mix(ColorRGBa.BLUE, ColorRGBa.GREEN, 0.3)
+                drawer.fill = mix(ColorRGBa.PINK, ColorRGBa.RED, 0.3)
                 List(4) { i ->
                     drawer.circle(Vector2(
                         (width / 4.0) * (1 + i),

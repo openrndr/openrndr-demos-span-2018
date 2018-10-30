@@ -13,7 +13,7 @@ import org.openrndr.workshop.toolkit.typography.Fonts
 val Stacker003: Demo = {
     val txt = "OPENRNDR"
 
-    val n = 100
+    val n = 50
     val texts = txt.map { it ->
         Text(drawer, it.toString(), Fonts.SpaceMono_Bold, 700.0)
     }.mapIndexed { index, text ->
@@ -34,8 +34,8 @@ val Stacker003: Demo = {
     ({
         drawer.background(ColorRGBa.BLACK)
         drawer.translate(50.0, 0.0)
-        List(8) { yi ->
-            drawer.translate(0.0, yi * 40.0)
+        List(9) { yi ->
+            drawer.translate(0.0, yi * 30.0)
             texts.forEachIndexed { index, it ->
                 it.draw(drawer, seconds + yi)
             }
