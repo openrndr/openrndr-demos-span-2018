@@ -1,6 +1,7 @@
 import demos.*
 import org.openrndr.application
 import org.openrndr.configuration
+import org.openrndr.draw.isolated
 import org.openrndr.extensions.Debug3D
 import org.openrndr.extensions.FunctionDrawer
 import org.openrndr.math.Matrix44
@@ -87,7 +88,9 @@ class Runner : DemoRunner() {
             if (currentRunning.shouldKill()) {
                 currentRunning = initDemo(iterator.next())
             }
-            currentRunning.drawFn()
+            drawer.isolated {
+                currentRunning.drawFn()
+            }
         })
 
     }
