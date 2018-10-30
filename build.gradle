@@ -52,7 +52,8 @@ dependencies {
     compile "org.openrndr:openrndr-extensions:$openrndrVersion"
     compile "org.openrndr:openrndr-filter:$openrndrVersion"
     implementation 'com.github.openrndr:workshop-generative-posters:master-SNAPSHOT'
-    compile 'com.github.openrndr.orx:orx-jumpflood:-SNAPSHOT'
+//    compile 'com.github.openrndr.orx:orx-jumpflood:-SNAPSHOT'
+    compile "org.openrndr.extra:orx-jumpflood:0.0.7"
     implementation 'com.google.code.gson:gson:2.8.5'
 }
 

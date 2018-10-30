@@ -83,6 +83,7 @@ class Text(val drawer: Drawer,
     // draws text stretched to the width and height of a target rectangle
     fun stretch(target: Rectangle, fn: Drawer.() -> Unit) {
         drawer.isolatedWithTarget(fillRenderTarget) {
+            drawer.background(ColorRGBa.TRANSPARENT)
             drawer.ortho(fillRenderTarget)
             fn()
             draw(Vector2(0.0, 0.0), HorizontalAlign.LEFT, VerticalAlign.ASCENDER)
