@@ -27,7 +27,7 @@ val Gradient004: Demo = {
                         m = (cos(mi) + 1.0 ) * 0.5;
                     }
                     vec3 finalColor = mix(p_c1.rgb, p_c2.rgb, m);
-                    x_fill.rgb = finalColor;
+                    x_fill.rgb = finalColor * x_fill.a;
                     """
     }
 

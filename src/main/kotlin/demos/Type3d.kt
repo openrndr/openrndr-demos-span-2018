@@ -156,22 +156,22 @@ val Type3d: Demo = {
             drawer.stroke = null
             drawer.fill = ColorRGBa.WHITE
 
-//            if(System.currentTimeMillis()-timer > 500) {
-//
-//                val selection = cameraPositionsList.cameraPositions.filter { it.handle == (handle%9) }.last()
-//                if(selection!=null) {
-//                    println("Show camera at key " + handle)
-//                    camera.orbitalCamera.rotateTo(
-//                            eye = selection.eye
-//                    )
-//                    camera.orbitalCamera.panTo(
-//                            selection.lookAt
-//                    )
-//                }
-//                handle++
-//
-//                timer = System.currentTimeMillis()
-//            }
+            if(System.currentTimeMillis()-timer > 1500) {
+
+                val selection = cameraPositionsList.cameraPositions.filter { it.handle == (handle%9) }.last()
+                if(selection!=null) {
+                    println("Show camera at key " + handle)
+                    camera.orbitalCamera.rotateTo(
+                            eye = selection.eye
+                    )
+                    camera.orbitalCamera.panTo(
+                            selection.lookAt
+                    )
+                }
+                handle++
+
+                timer = System.currentTimeMillis()
+            }
 
 
             for(i in 0..10) {
