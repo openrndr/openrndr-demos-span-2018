@@ -1,17 +1,32 @@
 import demos.*
+import demos.Text
+import org.openrndr.animatable.Animatable
 import org.openrndr.application
+import org.openrndr.color.ColorRGBa
 import org.openrndr.configuration
 import org.openrndr.draw.isolated
 import org.openrndr.extensions.Debug3D
 import org.openrndr.extensions.FunctionDrawer
 import org.openrndr.math.Matrix44
+import org.openrndr.math.Vector2
+import org.openrndr.shape.Rectangle
+import org.openrndr.workshop.toolkit.typography.Fonts
 
+
+val introText = """
+    Demos made with OPENRNDR, a creative programming framework written in Kotlin. Visit https://openrndr.org for more information.
+""".trimIndent().split("\n").joinToString(" ")
 
 class Runner : DemoRunner() {
     override lateinit var camera: Debug3D
 
     override fun setup() {
         camera = Debug3D()
+
+        val text = Text(drawer, introText, Fonts.Iosevka_term_bold, 30.0)
+        val textBounds = Rectangle(0.0, height - 50.0, width.toDouble(), 50.0)
+
+
         // list of demo entries:
         // the number of seconds a demo should run paired with the demo itself
         val demos = listOf(
@@ -112,6 +127,16 @@ class Runner : DemoRunner() {
             }
             drawer.isolated {
                 currentRunning.drawFn()
+            }
+
+            drawer.isolated {
+                drawer.fill = ColorRGBa.BLACK
+                drawer.rectangle(textBounds)
+                drawer.fill = ColorRGBa.PINK
+                text.draw(
+                    textBounds.corner + Vector2(10.0, textBounds.height / 2.0),
+                    verticalAlign = Text.VerticalAlign.CENTER
+                )
             }
         })
 
