@@ -48,7 +48,7 @@ val Moire003: Demo = {
             )) {
                 drawer.fill = ColorRGBa.BLACK
                 state.layers.forEachIndexed { index, layer ->
-                    val ps = layer.map { it.position }
+                    val ps = layer.map { it.position + Vector2(1.0, 1.0) * it.radius }
                     val radius = layer[0].radius * (Math.abs(Math.cos(seconds + index))) + 2.0
                     drawer.fill = colors[index % colors.size]
                     drawer.circles(ps, radius)
@@ -62,7 +62,7 @@ val Moire003: Demo = {
         drawMoire(colorSet1, seconds)
 
         drawer.isolatedWithTarget(rt) {
-            drawMoire(colorSet1, seconds + 1.0)
+            drawMoire(colorSet1, seconds + 2.0)
         }
 
         val masked = mask.applyTo(rt) {

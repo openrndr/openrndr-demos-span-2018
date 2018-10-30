@@ -54,7 +54,9 @@ class State(val program: Program) {
         }
 
         program.keyboard.keyDown.filter { it.name == "r" }.listen {
-            layers = configs[Math.floor(Math.random() * configs.size).toInt()].map { it -> C.grid(it, program.width, program.height) }
+            val i = Math.floor(Math.random() * configs.size).toInt()
+            println("i: ${i}")
+            layers = configs[i].map { it -> C.grid(it, program.width, program.height) }
         }
 
         program.mouse.clicked.listen {
@@ -104,7 +106,7 @@ val Moire001: Demo = {
                     val ps = layer.map { it.position }
                     val radius = layer[0].radius * (Math.abs(Math.cos(seconds + index))) + 2.0
                     drawer.fill = colors[index % colors.size]
-                    drawer.rectangles(ps, radius, radius)
+                    drawer.circles(ps, radius)
                 }
             }
 
