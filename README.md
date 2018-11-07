@@ -1,4 +1,4 @@
-# OpenRNDR Demos Span 2018
+# OPENRNDR Demos Span 2018
 
 
 ## Development
