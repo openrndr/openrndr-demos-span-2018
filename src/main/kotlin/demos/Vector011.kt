@@ -48,12 +48,11 @@ val Vector011: Demo = {
             it.shape.contours.flatMap {
                 (0..3).map { k ->
                     //val base = it.clockwise.sub(0.0, Math.cos(seconds+k*Math.PI/10.0)*0.5+0.5)
-                    val offset = it.offset(k * 10.0, SegmentJoin.ROUND).sub(seconds*0.1 + k * 0.1, seconds*0.1 + 0.2 + k * 0.1 + anims[shapeIndex - 1].length)
+                    val offset = it.offset(k * 10.0, SegmentJoin.ROUND).sub(seconds * 0.1 + k * 0.1, seconds * 0.1 + 0.2 + k * 0.1 + anims[shapeIndex - 1].length)
                     offset.transform(transform {
                         translate(0.0, anims[shapeIndex - 1].y)
-
                         translate(c)
-                                   rotate(Vector3.UNIT_Z, anims[shapeIndex-1].length*15)
+                        rotate(Vector3.UNIT_Z, anims[shapeIndex - 1].length * 15)
                         scale(anims[shapeIndex - 1].scale)
                         translate(-c)
                     })
